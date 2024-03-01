@@ -13,15 +13,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { EmployeesRegister } from "@/schema/employeesRegister";
+import { Employee } from "@/schema/employeesRegister";
 
 export const SelectForm = ({
   form,
   data,
   dataOptions,
-  className = "",
 }: {
-  form: UseFormReturn<EmployeesRegister>;
+  form: UseFormReturn<Employee>;
   data: {
     name: string;
     label: string;
@@ -34,10 +33,10 @@ export const SelectForm = ({
   return (
     <FormField
       control={form.control}
-      name={data.name as Extract<keyof EmployeesRegister, string>}
+      name={data.name as Extract<keyof Employee, string>}
       render={({ field }) => {
         return (
-          <FormItem className={`grow truncate ${className}`}>
+          <FormItem>
             <FormLabel>{data.label}</FormLabel>
             <Select
               onValueChange={field.onChange}

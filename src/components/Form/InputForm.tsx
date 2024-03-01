@@ -7,13 +7,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { EmployeesRegister } from "@/schema/employeesRegister";
+import { Employee } from "@/schema/employeesRegister";
 
 export const InputForm = ({
   form,
   data,
 }: {
-  form: UseFormReturn<EmployeesRegister>;
+  form: UseFormReturn<Employee>;
   data: {
     name: string;
     label: string;
@@ -25,7 +25,7 @@ export const InputForm = ({
   return (
     <FormField
       control={form.control}
-      name={data.name as Extract<keyof EmployeesRegister, string>}
+      name={data.name as Extract<keyof Employee, string>}
       render={({ field }) => {
         return (
           <FormItem className="grow">
