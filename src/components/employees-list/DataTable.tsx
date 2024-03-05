@@ -57,7 +57,7 @@ export function DataTable<TData, TValue>({
         <DebouncedInput
           value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(String(value))}
-          className="p-2 max-w-sm"
+          className="p-2 lg:max-w-sm w-full border rounded-md"
           placeholder="Search all columns..."
         />
       </div>

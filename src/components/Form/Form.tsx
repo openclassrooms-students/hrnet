@@ -15,6 +15,7 @@ import {
   employeeDataForm,
   statesOptions,
 } from "@/data/employeeRegisterData";
+import DatePickerForm from "./DatePickerForm";
 
 const Forms = () => {
   const form = useForm<Employee>({
@@ -24,7 +25,21 @@ const Forms = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (employee: Employee) => {
-    addEmployee(employee);
+    const formateEmployee = {
+      ...employee,
+      dateOfBirth: employee.dateOfBirth.toLocaleString("fr-FR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }),
+      startDate: employee.startDate.toLocaleString("fr-FR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }),
+    };
+
+    addEmployee(formateEmployee);
     toast.success("Employee Created successfully !");
     form.reset();
     navigate("/employees");
@@ -38,9 +53,12 @@ const Forms = () => {
       >
         <fieldset className="grid md:grid-cols-2 gap-x-8 gap-y-4 border-2 border-double p-4 rounded-md">
           <legend>Informations personnelles</legend>
-          {employeeDataForm.map((data) => (
-            <InputForm key={data.name} form={form} data={data} />
-          ))}
+          {employeeDataForm.map((data) => {
+            if (data.type == "date") {
+              return <DatePickerForm key={data.name} form={form} data={data} />;
+            }
+            return <InputForm key={data.name} form={form} data={data} />;
+          })}
         </fieldset>
 
         <fieldset className="grid md:grid-cols-2 gap-x-8 gap-y-4 border-2 border-double p-4 rounded-md">

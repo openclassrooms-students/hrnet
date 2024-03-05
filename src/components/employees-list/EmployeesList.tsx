@@ -13,7 +13,7 @@ const EmployeesList = () => {
   });
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-4">
       <DataTable columns={columns} data={data} />
     </div>
   );

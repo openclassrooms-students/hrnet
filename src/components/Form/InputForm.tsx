@@ -36,6 +36,7 @@ export const InputForm = ({
                 type={data.type}
                 // required={data.required}
                 {...field}
+                value={field.value as string}
               />
             </FormControl>
             <FormMessage />

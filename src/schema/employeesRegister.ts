@@ -3,12 +3,10 @@ import { z } from "zod";
 export const employeeRegisterSchema = z.object({
   firstName: z.string({ required_error: "First name is required" }).min(1),
   lastName: z.string({ required_error: "Last name is required" }).min(1),
-  dateOfBirth: z
-    .string({
-      required_error: "Date of birth is required",
-    })
-    .min(10, { message: "Please enter a valid date of birth" }),
-  startDate: z.string({
+  dateOfBirth: z.date({
+    required_error: "Date of birth is required",
+  }),
+  startDate: z.date({
     required_error: "Start date is required",
   }),
   street: z.string({ required_error: "Street is required" }).min(2),
@@ -22,6 +20,15 @@ export const employeeRegisterSchema = z.object({
     .min(5),
 });
 
-export type Employee = z.infer<typeof employeeRegisterSchema> & {
+export type Employee = {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: Date | string;
+  startDate: Date | string;
+  street: string;
+  city: string;
+  zipCode: string;
+  state: string;
+  department: string;
   id?: string;
 };
